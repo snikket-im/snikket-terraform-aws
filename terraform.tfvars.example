@@ -1,0 +1,31 @@
+# 1) Fill in the configuration parameters below
+# 2) Rename this file to terraform.tfvars
+# 3) Run `terraform apply`
+
+#########################
+# Snikket configuration #
+#########################
+
+# The base domain of the Snikket service
+domain      = "chat.example.com"
+
+# The email address of the admin of the service
+admin_email = "chat-admin@example.com"
+
+# The name of an SSH key that is already created
+# or imported in your AWS EC2 account already
+key_name    = "my-ssh-key"
+
+# The Snikket version to deploy
+snikket_version = "alpha"
+
+#################
+# AWS specifics #
+#################
+
+# The region to deploy to
+aws_region = "eu-west-1"
+# The availability zone to deploy to
+aws_zone   = "eu-west-1a"
+# The VPC to deploy to
+vpc_id     = "vpc-613cf6a9"
