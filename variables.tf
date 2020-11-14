@@ -2,6 +2,10 @@ variable "domain" {
   description = "The base domain of the service"
 }
 
+variable "dns_zone" {
+  description = "The Route53 zone to add records to"
+}
+
 variable "admin_email" {
   description = "Valid email address for the admin of the service"
 }
