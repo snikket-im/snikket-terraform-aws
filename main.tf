@@ -50,7 +50,7 @@ data "template_cloudinit_config" "config" {
 }
 
 resource "aws_security_group" "allow_ssh" {
-  name        = "allow_ssh"
+  name_prefix = "snikket_allow_ssh"
   description = "Allow SSH access from anywhere"
   vpc_id      = data.aws_vpc.default.id
 
@@ -64,7 +64,7 @@ resource "aws_security_group" "allow_ssh" {
 }
 
 resource "aws_security_group" "allow_snikket_all" {
-  name        = "allow_snikket"
+  name_prefix = "snikket_allow_ports"
   description = "Allow access to a Snikket server from anywhere"
   vpc_id      = data.aws_vpc.default.id
 
@@ -117,7 +117,7 @@ resource "aws_security_group" "allow_snikket_all" {
 }
 
 resource "aws_security_group" "allow_stun_turn_server" {
-  name        = "allow_stun_turn_server"
+  name_prefix = "snikket_allow_turn"
   description = "Allow access to a STUN/TURN server"
   vpc_id      = data.aws_vpc.default.id
 
