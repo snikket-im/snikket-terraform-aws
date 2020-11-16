@@ -16,7 +16,7 @@ variable "key_name" {
 
 variable "snikket_version" {
   description = "The Snikket branch/tag to deploy"
-  default = "alpha"
+  default     = "alpha"
 }
 
 variable "import_test_data" {
