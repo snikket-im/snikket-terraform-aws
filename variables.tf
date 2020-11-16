@@ -35,3 +35,7 @@ variable "aws_zone" {
 variable "vpc_id" {
   description = "Identifier of the VPC to deploy to"
 }
+
+variable "config_secret" {
+  description = "Secret key used to initialize e.g. API keys"
+}
