@@ -192,7 +192,7 @@ resource "aws_instance" "snikket" {
 
 resource "aws_route53_record" "primary" {
   zone_id = data.aws_route53_zone.selected.zone_id
-  name    = data.aws_route53_zone.selected.name
+  name    = var.domain
   type    = "A"
   ttl     = "60"
   records = [aws_instance.snikket.public_ip]
@@ -200,7 +200,7 @@ resource "aws_route53_record" "primary" {
 
 resource "aws_route53_record" "groups" {
   zone_id = data.aws_route53_zone.selected.zone_id
-  name    = "groups"
+  name    = "groups.${var.domain}"
   type    = "CNAME"
   ttl     = "60"
   records = [aws_route53_record.primary.name]
@@ -208,7 +208,7 @@ resource "aws_route53_record" "groups" {
 
 resource "aws_route53_record" "share" {
   zone_id = data.aws_route53_zone.selected.zone_id
-  name    = "share"
+  name    = "share.${var.domain}"
   type    = "CNAME"
   ttl     = "60"
   records = [aws_route53_record.primary.name]
