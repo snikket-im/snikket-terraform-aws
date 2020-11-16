@@ -3,6 +3,7 @@
 DOMAIN="${tf_domain}"
 ESCAPED_DOMAIN=$(echo "$DOMAIN" | lua -e 'print((io.read():gsub("%W", function (c) return ("%%%02x"):format(c:byte())end)))')
 EMAIL="${tf_admin_email}"
+CONFIG_SECRET="${tf_config_secret}"
 
 if [[ "${tf_import_test_data}" == "true" ]]; then
 	install -d "/var/lib/snikket/prosody/$ESCAPED_DOMAIN"
@@ -43,3 +44,6 @@ SNIKKET_ADMIN_EMAIL=${tf_admin_email}
 EOF
 
 docker-compose up -d
+
+# Generate invite API key and publish it at the SECRET location
+docker exec -t snikket bash -c "prosodyctl mod_invites_api $DOMAIN create > /var/www/api-key-$CONFIG_SECRET"
