@@ -43,6 +43,12 @@ SNIKKET_ADMIN_EMAIL=${tf_admin_email}
 
 EOF
 
+if ! host "$DOMAIN"; then
+	while sleep 15 && ! host "$DOMAIN"; do
+		echo "Waiting for DNS ($DOMAIN)...";
+	done
+fi
+
 docker-compose up -d
 
 # Generate invite API key and publish it at the SECRET location
